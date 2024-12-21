@@ -1,5 +1,5 @@
 <?php
-include("../sql/action.php");
+include("../sql/action.php");// pour qu'il raison tu va loader la liste des joueurs, les flags et les clubs dans cette page ?
 include("../sql/connexion.php");
 
 
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     dribbling = '$dribbling', 
                     defending = '$defending', 
                     physical = '$physical'";
-
+    // donc, pour un goalkeeper il va avoir les statistiques d'un joueur et aussi d'un gk ? dans tous les cas on aura pace, shooting... et les autres statistiques d'un joueur
     // If it's a goalkeeper, include the extra stats
     if ($position == 'GK') {
         $update_query .= ", diving = '$diving', 
