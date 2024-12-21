@@ -1,4 +1,5 @@
 <?php
+// les caractère comme & n'est pas recommandé dans les noms de fichiers, car il peut être interprété comme un opérateur( notamment dans les URL )
 include("../sql/connexion.php");
 
 if (isset($_POST["addclub"])) {
@@ -23,6 +24,7 @@ if (isset($_POST["addclub"])) {
         // Close the statement
         $stmt->close();
     } 
+    // n'est pas recommandé d'utiliser echo ou print avant header, sauf si tu va utiliser ob_start() & ob_clean()
     header("Location: http://localhost/EA_25/flags&clubs.php");
 }
 if (isset($_POST["addflag"])) {
