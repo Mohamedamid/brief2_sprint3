@@ -2,7 +2,6 @@
 include("../sql/action.php");
 include("../sql/connexion.php");
 
-
 if (isset($_GET['id'])) {
     $player_id = $_GET['id'];
 
@@ -33,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $defending = (int) $_POST['defending'];
     $physical = (int) $_POST['physical'];
 
-    // Add GK stats if position is GK
     if ($position == 'GK') {
         $diving = (int) $_POST['diving'];
         $handling = (int) $_POST['handling'];
@@ -43,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $positioning = (int) $_POST['positioning'];
     }
 
-    // Update the player in the database
     $update_query = "UPDATE players SET 
                     nom = '$name', 
                     photo = '$photo', 
@@ -58,7 +55,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     defending = '$defending', 
                     physical = '$physical'";
 
-    // If it's a goalkeeper, include the extra stats
     if ($position == 'GK') {
         $update_query .= ", diving = '$diving', 
                             handling = '$handling', 
@@ -68,12 +64,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             positioning = '$positioning'";
     }
 
-    // Add the WHERE condition to ensure the correct player is updated
     $update_query .= " WHERE id = $player_id";
 
-    // Execute the query and check for errors
     if (mysqli_query($conn, $update_query)) {
-        // Redirect to the main page after successful update
         header("Location: ../admin.php");
         exit;
     } else {
@@ -89,25 +82,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Player</title>
-
-    <!-- Bootstrap CDN for styling -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-        /* Full viewport height and center content */
         html,
         body {
             height: 100vh;
-            /* Ensure body and html are full height */
             margin: 0;
-            /* Remove default margin */
             display: flex;
             justify-content: center;
-            /* Horizontally center */
             align-items: center;
-            /* Vertically center */
             background-color: #f8f9fa;
-            /* Light background for contrast */
         }
 
         .container {
@@ -118,7 +103,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             width: 100%;
         }
 
-        /* Optional: Add some padding to the form */
         form {
             margin-top: 20px;
             padding: 20px;
@@ -219,7 +203,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <input class="form-control" id="rating" name="rating" type="number" min="20" max="100"
                     value="<?php echo $player['rating']; ?>" placeholder="Rating" required>
             </div>
-            <!-- joueur Stats -->
             <?php if ($player['position'] != 'GK') { ?>
                 <div class="mb-3">
                     <label for="pace" class="form-label">Pace</label>
@@ -257,7 +240,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         value="<?php echo $player['physical']; ?>" placeholder="Physical" required>
                 </div>
             <?php } ?>
-            <!-- GK Stats -->
             <?php if ($player['position'] == 'GK') { ?>
                 <div class="mb-3">
                     <label for="diving" class="form-label">Diving</label>
@@ -299,7 +281,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="submit" class="btn btn-primary">Update Player</button>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybQbYdXbQnlxjGiP7fuXlT6g2xpL96jlm0YFSkLJlgc7Gp5oGp" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-pzjw8f+ua7Kw1TIq0j6dRtDULvKKb8FO9czfiAcaZ4DkR9tcFqvIz0em10QI1fG2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz4fnFO9gybQbYdXbQnlxjGiP7fuXlT6g2xpL96jlm0YFSkLJlgc7Gp5oGp"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-pzjw8f+ua7Kw1TIq0j6dRtDULvKKb8FO9czfiAcaZ4DkR9tcFqvIz0em10QI1fG2"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

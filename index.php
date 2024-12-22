@@ -65,51 +65,41 @@ include("./sql/action.php");
     </div>
     <main>
         <div id="page-content-wrapper">
-            <!-- Content Section -->
             <div class="container mt-5">
                 <div class="row">
-                    <!-- Card for Total Clubs -->
                     <div class="col-md-6 col-lg-3 mb-3">
                         <div class="card text-white bg-primary">
                             <div class="card-body">
-                                <h5 class="card-title">عدد الأندية</h5>
-                                <p class="card-text">15</p>
+                                <h5 class="card-title">Total des Joueur</h5>
+                                <p class="card-text"><?php echo $total_players; ?></p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Card for Total Players -->
-                    <div class="col-md-6 col-lg-3 mb-3">
-                        <div class="card text-white bg-success">
-                            <div class="card-body">
-                                <h5 class="card-title">عدد اللاعبين</h5>
-                                <p class="card-text">250</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card for Pending Requests -->
-                    <div class="col-md-6 col-lg-3 mb-3">
-                        <div class="card text-white bg-warning">
-                            <div class="card-body">
-                                <h5 class="card-title">طلبات الانتظار</h5>
-                                <p class="card-text">5</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Card for Messages -->
                     <div class="col-md-6 col-lg-3 mb-3">
                         <div class="card text-white bg-danger">
                             <div class="card-body">
-                                <h5 class="card-title">الرسائل الجديدة</h5>
-                                <p class="card-text">3</p>
+                                <h5 class="card-title">Total des GK</h5>
+                                <p class="card-text"><?php echo $total_GK; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="card text-white bg-success">
+                            <div class="card-body">
+                                <h5 class="card-title">Total des Flags</h5>
+                                <p class="card-text"><?php echo $total_flags; ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 mb-3">
+                        <div class="card text-white bg-warning">
+                            <div class="card-body">
+                                <h5 class="card-title">Totl des clubs</h5>
+                                <p class="card-text"><?php echo $total_clubs;?></p>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Additional Content -->
                 <div class="row">
                     <table class="player-table" border="1">
                         <thead>
@@ -236,7 +226,6 @@ include("./sql/action.php");
         </div>
 
     </main>
-    <!-- تضمين JavaScript من Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./js/main.js?v=3"></script>
 </body>
